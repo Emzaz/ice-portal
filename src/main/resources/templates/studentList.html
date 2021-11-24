@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/header :: header" />
+
+<body>
+
+<div th:replace="fragments/navigation :: navbar"></div>
+
+
+<div class="container my-2">
+    <a th:href="@{/studentForm}" class="btn btn-primary btn-sm mb-3">Add Student</a>
+    <h1>Students List</h1>
+    <table id="student_table">
+        <thead>
+        <tr>
+            <th>User Name</th>
+            <th>Email</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Session</th>
+            <th>Student Id</th>
+            <th>Blood Group</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="student : ${listOfStudents}">
+            <td th:text="${student.getUserName()}"></td>
+            <td th:text="${student.getEmail()}"></td>
+            <td th:text="${student.getFirstName()}"></td>
+            <td th:text="${student.getLastName()}"></td>
+            <td th:text="${student.getSession()}"></td>
+            <td th:text="${student.getStudentId()}"></td>
+            <td th:text="${student.getBloodGroup()}"></td>
+            <td>
+                <a th:href="@{/updateStudent/{id}(id=${student.getId()})}" class="btn btn-primary btn-sm">Update</a>
+                <form th:action="@{/deleteStudent/{id}(id=${student.getId()})}" th:method="delete">
+                    <button class="btn btn-danger btn-sm" id="delete_student" type="submit">Delete</button>
+                </form>
+
+            </td>
+
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+
+
+<div th:replace="fragments/footer :: footer"/>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#student_table').DataTable();
+    });
+</script>
+</body>
+</html>

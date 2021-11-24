@@ -1,0 +1,21 @@
+h2, .uni-name {
+    font-family: 'Crimson Text', serif !important;
+}
+.uni-name{
+    color: #202C45 !important;
+    letter-spacing: 0.08em !important;
+}
+.box {
+    background-color: rgb(139, 7, 7);
+    padding: 50px;
+    text-align: center;
+    font-size: 35px;
+    color: white;
+}
+
+#footer {
+    position: absolute;
+    bottom: 0;
+    height: 2.5rem;
+    width: 100%;
+}

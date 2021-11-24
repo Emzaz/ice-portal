@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/header :: header"/>
+
+<body>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-1">
+            <img style="width: 40px;" th:src="@{/images/logo.gif}" alt="NSTU_LOGO" >
+        </div>
+
+        <div class="col-7">
+            <h4 class="uni-name">DEPERTMENT OF INFORMATION AND COMMUNICATION ENGINEERING</h4>
+        </div>
+
+        <div class="col-md-3">
+            <p>Contact<br>
+                phone: 01609025452
+                <br>
+                email: emzazahmednrl@gmail.com
+            </p>
+        </div>
+    </div>
+</div>
+
+
+<div th:replace="fragments/navigation :: navbar"></div>
+
+<br>
+
+<div class="container">
+    <img th:src="@{/images/pic.png}" alt="" class="img-fluid" width="100%">
+</div>
+
+<br>
+
+<div class="bg-light-red pt-15 pb-15 box">
+    Notice Box
+</div>
+
+<div th:replace="fragments/footer :: footer"/>
+
+</body>
+</html>
