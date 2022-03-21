@@ -7,22 +7,21 @@
 
 <!--<div th:replace="fragments/navigation :: navbar"></div>-->
 
-
 <div class="container">
     <br/>
 
-    <h2 class="h2">Update Teacher</h2>
+    <h2 class="h2">Save Admin</h2>
     <hr class="mb-4">
 
-    <form action="#" th:action="@{/saveTeacher}" th:object="${teacher}" method="post">
+    <form action="#" th:action="@{/saveAdmin}" th:object="${admin}" method="post">
 
         <div class="form-group">
             <input type="hidden" th:field="*{id}" class="form-control mb-4 col-4">
         </div>
 
         <div class="form-group">
-            <label>Teacher ID</label>
-            <input type="text" th:field="*{teacherId}" class="form-control mb-4 col-4">
+            <label>Admin ID</label>
+            <input type="text" th:field="*{adminId}" class="form-control mb-4 col-4">
         </div>
 
         <div class="form-group">
@@ -41,29 +40,13 @@
         </div>
 
         <div class="form-group">
-            <label>First Name</label>
-            <input type="text" th:field="*{firstName}" class="form-control mb-4 col-4">
-        </div>
-
-        <div class="form-group">
-            <label>Last Name</label>
-            <input type="text" th:field="*{lastName}" class="form-control mb-4 col-4">
-        </div>
-
-        <div class="form-group">
-            <label>Contact Number</label>
-            <input type="text" th:field="*{contactNumber}" class="form-control mb-4 col-4">
-        </div>
-
-        <div class="form-group">
             <button class="btn btn-primary btn-lg" type="submit">
-                Update Teacher
+                Save Admin
             </button>
         </div>
     </form>
 
 </div>
-
 
 <div th:replace="fragments/footer :: footer"/>
 

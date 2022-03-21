@@ -5,13 +5,13 @@
 
 <body>
 
-<div th:replace="fragments/navigation :: navbar"></div>
+<!--<div th:replace="fragments/navigation :: navbar"></div>-->
 
 
 <div class="container my-2">
     <a th:href="@{/teacherForm}" class="btn btn-primary btn-sm mb-3">Add Teacher</a>
     <h1>Teachers List</h1>
-    <table border="1" class="table table-striped table-responsive-md">
+    <table id="teacher_table" border="1" class="table table-striped table-responsive-md">
         <thead>
         <tr>
             <th>User Name</th>
@@ -32,8 +32,10 @@
             <td th:text="${teacher.getTeacherId()}"></td>
             <td th:text="${teacher.getContactNumber()}"></td>
 
-            <td><a th:href="@{/updateTeacher/{id}(id=${teacher.getId()})}" class="btn btn-primary">Update</a> </td>
-            <td><a th:href="@{/deleteTeacher/{id}(id=${teacher.getId()})}" class="btn btn-danger">Delete</a> </td>
+            <td>
+                <a th:href="@{/updateTeacher/{id}(id=${teacher.getId()})}" class="btn btn-primary">Update</a>
+                <a th:href="@{/deleteTeacher/{id}(id=${teacher.getId()})}" class="btn btn-danger">Delete</a>
+            </td>
         </tr>
         </tbody>
     </table>
@@ -42,6 +44,12 @@
 
 
 <div th:replace="fragments/footer :: footer"/>
-
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#teacher_table').DataTable();
+    });
+</script>
 </body>
 </html>

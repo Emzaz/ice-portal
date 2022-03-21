@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/header :: header" />
+
+<body>
+
+<!--<div th:replace="fragments/navigation :: navbar"></div>-->
+
+<div class="container my-2">
+    <a th:href="@{/resultForm}" class="btn btn-primary btn-sm mb-3">Add Result</a>
+    <h1>Results List</h1>
+
+    <table id="result_table" border="1" class="table table-striped table-responsive-md">
+
+        <thead>
+        <tr>
+            <th>Session</th>
+            <th>Student Name</th>
+            <th>Student Id</th>
+            <th>Year</th>
+            <th>Term</th>
+            <th>Course Code</th>
+            <th>Course title</th>
+            <th>Credits</th>
+            <th>Grade Points</th>
+            <th>Grade</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="result : ${listOfResults}">
+            <td th:text="${result.getSession()}"></td>
+            <td th:text="${result.getStudentName()}"></td>
+            <td th:text="${result.getStudentId()}"></td>
+            <td th:text="${result.getYear()}"></td>
+            <td th:text="${result.getTerm()}"></td>
+            <td th:text="${result.getCourseCode()}"></td>
+            <td th:text="${result.getCourseTitle()}"></td>
+            <td th:text="${result.getCredits()}"></td>
+            <td th:text="${result.getGradePoints()}"></td>
+            <td th:text="${result.getGrade()}"></td>
+
+            <td>
+                <a th:href="@{/updateResult/{id}(id=${result.getId()})}" class="btn btn-primary btn-sm">Update</a>
+                <a th:href="@{/deleteResult/{id}(id=${result.getId()})}" class="btn btn-danger btn-sm">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+
+    </table>
+
+</div>
+
+<div th:replace="fragments/footer :: footer"/>
+
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#result_table').DataTable();
+    });
+</script>
+
+</body>
+</html>

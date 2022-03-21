@@ -6,6 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.List;
 
 @Controller
 public class StudentController {
@@ -28,6 +33,19 @@ public class StudentController {
         return "studentForm";
     }
 
+    @GetMapping("/uploadStudent")
+    public String uploadStudent() {
+
+        return "studentCsvForm";
+    }
+
+    @PostMapping("/uploadStudent")
+    public String saveStudentCsv(@RequestParam("file") MultipartFile file) throws IOException {
+        studentService.saveStudent(file);
+
+        return "redirect:/student";
+    }
+
     @PostMapping("/saveStudent")
     public String saveStudent(@ModelAttribute("student") Student student) {
         studentService.saveStudent(student);
@@ -44,7 +62,7 @@ public class StudentController {
         return "updateStudent";
     }
 
-    @DeleteMapping("/deleteStudent/{id}")
+    @GetMapping("/deleteStudent/{id}")
     public String deleteStudent(@PathVariable(value = "id") Long id) {
         this.studentService.deleteStudentById(id);
 

@@ -1,5 +1,7 @@
 package com.emzaz.crsystem.model;
 
+import com.opencsv.bean.CsvBindByPosition;
+
 import javax.persistence.*;
 
 @Entity
@@ -9,11 +11,14 @@ public class Student {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @CsvBindByPosition(position = 2)
     private String studentId;
     private String userName;
     private String email;
     private String password;
+    @CsvBindByPosition(position = 0)
     private String firstName;
+    @CsvBindByPosition(position = 1)
     private String lastName;
     private String session;
     private String bloodGroup;
@@ -33,16 +38,16 @@ public class Student {
         this.bloodGroup = bloodGroup;
     }
 
-    public String getStudentId() {
-        return studentId;
-    }
-
     public Long getId() {
         return id;
     }
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getStudentId() {
+        return studentId;
     }
 
     public void setStudentId(String studentId) {

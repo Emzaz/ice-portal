@@ -14,8 +14,98 @@ h2, .uni-name {
 }
 
 #footer {
-    position: absolute;
+    position: sticky;
     bottom: 0;
     height: 2.5rem;
     width: 100%;
+    text-align: right;
+}
+
+.navbar{
+    padding: 0px;
+    background-color: rgba(0, 0, 0, 0.3);
+    border: 1px solid black;
+    margin-top: 25px;
+}
+
+
+.fa-cog {
+    color: black;
+}
+
+.fa-sign-out-alt{
+    color: black;
+}
+
+table {
+    border-collapse: initial;
+}
+
+.table{
+    border: 1px solid black;
+    margin-top: 20px;
+}
+
+.table thead th {
+    border-bottom: 0px solid #dee2e6;
+}
+
+tbody, td, tfoot, th, thead, tr {
+
+    border-style: none;
+
+}
+
+.courses{
+    border: 1px solid black;
+}
+
+.left{
+    float:left;
+    width: 60%;
+    padding-top: 10px;
+    padding-left: 50px;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.right {
+    width: 40%;
+    float: left;
+    padding-top: 10px;
+}
+
+.card{
+    display: inline-block;
+    margin: 25px;
+}
+
+.card-footer{
+    border: 1px solid black;
+    height: 35px;
+}
+
+.link-color{
+    color: black;
+    padding-left: 40px;
+    margin-top: 4px;
+    display: inline-block;
+    /* border: 2px solid red; */
+}
+.mod{
+    padding: 0px;
+}
+
+.Notes{
+    border: 1px solid black;
+    padding: 15px;
+    margin-top: 20px;
+}
+
+.fa-minus-circle{
+    color: rgb(190, 32, 32);
+}
+
+.fa-download{
+    color: rgb(0, 119, 255);
 }

@@ -1,6 +1,16 @@
 package com.emzaz.crsystem.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Admin {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private  Long id;
 
     private String adminId;
     private String userName;
@@ -10,11 +20,20 @@ public class Admin {
     public Admin() {
     }
 
-    public Admin(String adminId, String userName, String email, String password) {
+    public Admin(Long id, String adminId, String userName, String email, String password) {
+        this.id = id;
         this.adminId = adminId;
         this.userName = userName;
         this.email = email;
         this.password = password;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getAdminId() {

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/header :: header" />
+
+<body>
+
+<!--<div th:replace="fragments/navigation :: navbar"></div>-->
+
+<div class="container my-2">
+    <a th:href="@{/courseForm}" class="btn btn-primary btn-sm mb-3">Add Course</a>
+    <h1>Courses List</h1>
+
+    <table id="course_table" border="1" class="table table-striped table-responsive-md">
+
+        <thead>
+        <tr>
+            <th>Course Code</th>
+            <th>Course Title</th>
+            <th>Credits</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="course : ${listOfCourses}">
+            <td th:text="${course.getCourseCode()}"></td>
+            <td th:text="${course.getCourseTitle()}"></td>
+            <td th:text="${course.getCredits()}"></td>
+            <td>
+                <a th:href="@{/updateCourse/{id}(id=${course.getId()})}" class="btn btn-primary btn-sm">Update</a>
+                <a th:href="@{/deleteCourse/{id}(id=${course.getId()})}" class="btn btn-danger btn-sm">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+
+    </table>
+
+</div>
+
+<div th:replace="fragments/footer :: footer"/>
+
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#course_table').DataTable();
+    });
+</script>
+
+</body>
+</html>
