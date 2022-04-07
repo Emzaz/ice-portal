@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/header :: header"/>
+
+<body>
+
+<div class="container">
+    <h3>Upload Multiple Files</h3>
+    <form id="uploadNotes" name="uploadNotes" method="post" th:action="@{/uploadNotes}" enctype="multipart/form-data">
+        <input type="file" name="files" multiple required/>
+        <button type="submit">Submit</button>
+    </form>
+</div>
+
+<div class="container table">
+    <h3>List of Documents</h3>
+    <table>
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Download Link</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="note: ${notes}">
+            <td th:text="${note.getId()}"/>
+            <td th:text="${note.getNoteName()}"/>
+            <td th:href="@{'/downloadNote/' +${note.id}}">Download</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<div th:replace="fragments/footer :: footer"/>
+
+</body>
+</html>

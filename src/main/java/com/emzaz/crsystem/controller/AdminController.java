@@ -2,6 +2,7 @@ package com.emzaz.crsystem.controller;
 
 import com.emzaz.crsystem.model.Admin;
 import com.emzaz.crsystem.service.AdminService;
+import org.apache.commons.collections4.Get;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +18,11 @@ public class AdminController {
     private AdminService adminService;
 
     @GetMapping("/admin")
+    public String adminPanel() {
+        return "admin";
+    }
+
+    @GetMapping("/adminList")
     public String showAdmin(Model model) {
         model.addAttribute("listOfAdmins", adminService.getAllAdmins());
 
