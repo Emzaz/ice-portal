@@ -27,7 +27,7 @@
         <tr th:each="note: ${notes}">
             <td th:text="${note.getId()}"/>
             <td th:text="${note.getNoteName()}"/>
-            <td th:href="@{'/downloadNote/' +${note.id}}">Download</td>
+            <td><a th:href="@{'/downloadNote/' +${note.id}}">Download</a></td>
         </tr>
         </tbody>
     </table>

@@ -34,7 +34,7 @@ public class NoteController {
             noteService.saveFile(file);
         }
 
-        return "redirect:/noteUploadForm";
+        return "redirect:/uploadNotes";
     }
 
     @GetMapping("/downloadNote/{fileId}")
@@ -42,8 +42,8 @@ public class NoteController {
         Note note = noteService.getFile(fileId).get();
 
         return ResponseEntity.ok()
-                .contentType(MediaType.parseMediaType(note.getNoteType()))
-                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment:filename=\"" +note.getNoteName() + "\"")
+                .contentType(MediaType.APPLICATION_OCTET_STREAM)
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment;filename=\"" +note.getNoteName() + "\"")
                 .body(new ByteArrayResource(note.getData()));
     }
 }

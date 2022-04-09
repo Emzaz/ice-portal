@@ -1,9 +1,6 @@
 package com.emzaz.crsystem.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
@@ -14,7 +11,9 @@ public class Notice {
     private long id;
 
     private String title;
+
     private Date dateTime;
+
     private String noticeDetails;
 
     public Notice() {
@@ -25,6 +24,11 @@ public class Notice {
         this.title = title;
         this.dateTime = dateTime;
         this.noticeDetails = noticeDetails;
+    }
+
+    @PrePersist
+    protected void onCreate() {
+        dateTime= new Date();
     }
 
     public long getId() {
