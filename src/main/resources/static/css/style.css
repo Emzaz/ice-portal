@@ -28,6 +28,70 @@ h2, .uni-name {
     margin-top: 25px;
 }
 
+.main-nav {
+    padding: 0.75rem;
+    background-color: #fff !important;
+    border: 2px solid #0d6efd;
+    border-radius: 5px;
+    margin-bottom: 2rem;
+}
+
+.dashboard-notices {
+    margin-bottom: 2rem;
+}
+
+.dashboard-notices .card {
+    margin: 0;
+}
+
+table.dataTable.no-footer {
+    border: none;
+}
+
+.table.dataTable {
+    border: 1px solid #ddd;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+    padding: .20rem;
+}
+
+table.dataTable thead th, table.dataTable thead td {
+    border-top: 1px solid #ddd;
+    border-bottom: none;
+}
+
+.card .card-header,
+.card .card-footer {
+    background-color: #094fa0;
+    padding: 10px 15px;
+    color: #fff;
+}
+.card .card-footer {
+    padding: 3px;
+    background-color: #4c93cd;
+}
+.card .card-footer a {
+    color: #ffffff;
+    text-decoration: none;
+    display: block;
+}
+.course-card {
+    min-height: 150px;
+}
+
+.select-course {
+    display: block;
+    width: 100%;
+    padding: 0.15rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    color: #212529;
+    background-color: #fff;
+    border: 1px solid #ced4da;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: 0.25rem;
+}
 
 .fa-cog {
     color: black;
@@ -56,10 +120,6 @@ tbody, td, tfoot, th, thead, tr {
 
 }
 
-.courses{
-    border: 1px solid black;
-}
-
 .left{
     float:left;
     width: 60%;
@@ -75,15 +135,6 @@ tbody, td, tfoot, th, thead, tr {
     padding-top: 10px;
 }
 
-.card{
-    display: inline-block;
-    margin: 25px;
-}
-
-.card-footer{
-    border: 1px solid black;
-    height: 35px;
-}
 
 .link-color{
     color: black;
@@ -100,6 +151,11 @@ tbody, td, tfoot, th, thead, tr {
     border: 1px solid black;
     padding: 15px;
     margin-top: 20px;
+}
+
+.admin-dashboard .fas {
+    font-size: 2rem;
+    color: #495057;
 }
 
 .fa-minus-circle{

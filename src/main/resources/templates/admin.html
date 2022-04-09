@@ -6,7 +6,7 @@
 <body>
 
 <div class="container">
-    <nav class="navbar navbar-light bg-light">
+    <nav class="navbar navbar-light main-nav">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">
                 <img th:src="@{/images/logo.gif}" alt="" width="30" height="40">
@@ -26,87 +26,109 @@
             </ul>
         </div>
     </nav>
+</div>
 
-    <div class="card" style="width: 18rem;">
-        <div class="card-body">
-            <i class="fas fa-user-graduate"></i>
-            <h5 class="card-title">Students</h5>
-            <a th:href="@{/student}" class="card-link">View</a>
+<div class="container admin-dashboard">
+    <div class="row row-cols-1 row-cols-md-4 g-4">
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <i class="fas fa-user-graduate"></i>
+                    <h5 class="card-title">Students</h5>
+                    <a th:href="@{/student}" class="card-link">View</a>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                    <h5 class="card-title">Teachers</h5>
+                    <a th:href="@{/teacher}" class="card-link">View</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <i class="fas fa-book"></i>
+                    <h5 class="card-title">Courses</h5>
+                    <a th:href="@{/course}" class="card-link">View</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <i class="fas fa-file-csv"></i>
+                    <h5 class="card-title">Upload Student List</h5>
+                    <a th:href="@{/uploadStudent}" class="card-link">View</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <i class="fas fa-file-csv"></i>
+                    <h5 class="card-title">Upload Teacher List</h5>
+                    <a th:href="@{/uploadTeacher}" class="card-link">View</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <i class="fas fa-file-csv"></i>
+                    <h5 class="card-title">Upload Courses</h5>
+                    <a th:href="@{/uploadCourse}" class="card-link">View</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <i class="fas fa-trophy"></i>
+                    <h5 class="card-title">Exam Results</h5>
+                    <a href="#" class="card-link">View</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <i class="fas fa-percentage"></i>
+                    <h5 class="card-title">Attendance</h5>
+                    <a href="#" class="card-link">View</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <i class="fas fa-bullhorn"></i>
+                    <h5 class="card-title">Notices</h5>
+                    <a href="#" class="card-link">View</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <i class="fas fa-calendar-alt"></i>
+                    <h5 class="card-title">Events</h5>
+                    <a href="#" class="card-link">View</a>
+                </div>
+            </div>
         </div>
     </div>
-
-    <div class="card" style="width: 18rem;">
-        <div class="card-body">
-            <i class="fas fa-chalkboard-teacher"></i>
-            <h5 class="card-title">Teachers</h5>
-            <a th:href="@{/teacher}" class="card-link">View</a>
-        </div>
-    </div>
-
-    <div class="card" style="width: 18rem;">
-        <div class="card-body">
-            <i class="fas fa-book"></i>
-            <h5 class="card-title">Courses</h5>
-            <a th:href="@{/course}" class="card-link">View</a>
-        </div>
-    </div>
-
-    <div class="card" style="width: 18rem;">
-        <div class="card-body">
-            <i class="fas fa-file-csv"></i>
-            <h5 class="card-title">Upload Student List</h5>
-            <a th:href="@{/uploadStudent}" class="card-link">View</a>
-        </div>
-    </div>
-
-    <div class="card" style="width: 18rem;">
-        <div class="card-body">
-            <i class="fas fa-file-csv"></i>
-            <h5 class="card-title">Upload Teacher List</h5>
-            <a th:href="@{/uploadTeacher}" class="card-link">View</a>
-        </div>
-    </div>
-
-    <div class="card" style="width: 18rem;">
-        <div class="card-body">
-            <i class="fas fa-file-csv"></i>
-            <h5 class="card-title">Upload Courses</h5>
-            <a th:href="@{/uploadCourse}" class="card-link">View</a>
-        </div>
-    </div>
-
-    <div class="card" style="width: 18rem;">
-        <div class="card-body">
-            <i class="fas fa-trophy"></i>
-            <h5 class="card-title">Exam Results</h5>
-            <a href="#" class="card-link">View</a>
-        </div>
-    </div>
-
-    <div class="card" style="width: 18rem;">
-        <div class="card-body">
-            <i class="fas fa-percentage"></i>
-            <h5 class="card-title">Attendance</h5>
-            <a href="#" class="card-link">View</a>
-        </div>
-    </div>
-
-    <div class="card" style="width: 18rem;">
-        <div class="card-body">
-            <i class="fas fa-bullhorn"></i>
-            <h5 class="card-title">Notices</h5>
-            <a href="#" class="card-link">View</a>
-        </div>
-    </div>
-
-    <div class="card" style="width: 18rem;">
-        <div class="card-body">
-            <i class="fas fa-calendar-alt"></i>
-            <h5 class="card-title">Events</h5>
-            <a href="#" class="card-link">View</a>
-        </div>
-    </div>
-
 </div>
 
 

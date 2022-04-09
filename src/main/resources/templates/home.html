@@ -6,7 +6,7 @@
 <body>
 
 <div class="container">
-    <nav class="navbar navbar-light bg-light">
+    <nav class="navbar navbar-light main-nav">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">
                 <img th:src="@{/images/logo.gif}" alt="" width="30" height="40">
@@ -29,82 +29,140 @@
 </div>
 
 <div class="container">
-    <table class="table table-hover">
-        <thead>
-        <tr>
-            <th scope="col">Subject</th>
-            <th scope="col">Date</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td>Makeup Class</td>
-            <td>1 January, 2022 2:20PM</td>
-        </tr>
-        <tr>
-            <td>Cancelation Of Monday Class</td>
-            <td>1 January, 2022 2:00</td>
-        </tr>
-        </tbody>
-    </table>
-</div>
-
-<div class="container">
-    <nav aria-label="Page navigation example">
-        <ul class="pagination justify-content-end">
-            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" href="#">Next</a></li>
-        </ul>
-    </nav>
+    <div class="row">
+        <div class="dashboard-notices">
+            <div class="card border-primary table-responsive">
+                <div class="card-header">Recent Notices</div>
+                <div class="card-body text-secondary">
+                    <table class="table table-hover" id="dashboard-notice">
+                        <thead>
+                        <tr>
+                            <th scope="col">Subject</th>
+                            <th scope="col">Date</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>Makeup Class</td>
+                            <td>1 January, 2022 2:20PM</td>
+                        </tr>
+                        <tr>
+                            <td>Cancelation Of Monday Class</td>
+                            <td>1 January, 2022 2:00</td>
+                        </tr>
+                        <tr>
+                            <td>Makeup Class</td>
+                            <td>1 January, 2022 2:20PM</td>
+                        </tr>
+                        <tr>
+                            <td>Cancelation Of Monday Class</td>
+                            <td>1 January, 2022 2:00</td>
+                        </tr>
+                        <tr>
+                            <td>Makeup Class</td>
+                            <td>1 January, 2022 2:20PM</td>
+                        </tr>
+                        <tr>
+                            <td>Cancelation Of Monday Class</td>
+                            <td>1 January, 2022 2:00</td>
+                        </tr>
+                        <tr>
+                            <td>Makeup Class</td>
+                            <td>1 January, 2022 2:20PM</td>
+                        </tr>
+                        <tr>
+                            <td>Cancelation Of Monday Class</td>
+                            <td>1 January, 2022 2:00</td>
+                        </tr>
+                        <tr>
+                            <td>Makeup Class</td>
+                            <td>1 January, 2022 2:20PM</td>
+                        </tr>
+                        <tr>
+                            <td>Cancelation Of Monday Class</td>
+                            <td>1 January, 2022 2:00</td>
+                        </tr>
+                        <tr>
+                            <td>Makeup Class</td>
+                            <td>1 January, 2022 2:20PM</td>
+                        </tr>
+                        <tr>
+                            <td>Cancelation Of Monday Class</td>
+                            <td>1 January, 2022 2:00</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <div class="container">
 
     <div class="courses">
+        <div class="card border-primary table-responsive" style="margin: 0">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-1">Courses</div>
+                    <form th:action="@{/}" class="col-3">
+                        <select th:name="semester" onchange="this.form.submit()" class="select-course">
 
-        <div class="row">
-            <form th:action="@{/}">
-                <select th:name="semester" class="form-control" onchange="this.form.submit()">
+                            <option value="">Select Semester</option>
+                            <option th:each="semester : ${semesters}" th:value="${semester}" th:selected="${param.semester} == ${semester}" th:text="${semester}"></option>
 
-                    <option value="">Select Semester</option>
-                    <option th:each="semester : ${semesters}" th:value="${semester}" th:selected="${param.semester} == ${semester}" th:text="${semester}"></option>
-
-                </select>
-            </form>
-        </div>
-
-        <div class="row">
-            <div class="left" >
-                <h5>Registered Courses : <span th:text="${param.semester} ?: '1-1' "></span></h5>
+                        </select>
+                    </form>
+                </div>
             </div>
-        </div>
+            <div class="card-body text-secondary">
+                <div class="row">
 
-        <div class="row">
-            <th:block th:each="course : ${listOfCourses}">
-                <div class="col-md-4">
-                    <div class="card-deck">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title" th:text="${course.getCourseCode()}"></h5>
-                                <h6 class="card-text mb-2 text-muted" th:text="${course.getCourseTitle()}"></h6>
-                                <div class="card-footer mod">
-                                    <a th:href="@{'/courses/' + ${course.getId()} + '/notes'}" class="card-link link-color">Notes</a>
-                                    <a href="#" class="card-link link-color">Notices</a>
-                                </div>
-                            </div>
-                        </div>
+                </div>
+
+                <div class="row">
+                    <div style="margin: 15px 0 15px 0">
+                        <h5>Selected Semester: <span style="color: #4c93cd;" th:text="${param.semester} ?: '1-1' "></span></h5>
                     </div>
                 </div>
-            </th:block>
-        </div>
 
+                <div class="row row-cols-1 row-cols-md-4 g-4">
+                    <th:block th:each="course : ${listOfCourses}">
+                            <div class="col">
+                                <div class="card border-default course-card">
+                                    <div class="card-body">
+                                        <h5 class="card-title" th:text="${course.getCourseCode()}"></h5>
+                                        <h6 class="card-text mb-2 text-muted" th:text="${course.getCourseTitle()}"></h6>
+                                    </div>
+                                    <div class="card-footer">
+                                        <div class="row align-items-start">
+                                            <div class="col">
+                                                <a th:href="@{'/courses/' + ${course.getId()} + '/notes'}" class="card-link link-color">Notes</a>
+                                            </div>
+                                            <div class="col">
+                                                <a href="#" class="card-link link-color">Notices</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    </th:block>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
 <div th:replace="fragments/footer :: footer"/>
+
+<script>
+    $(document).ready(function() {
+        $('#dashboard-notice').DataTable({
+            "lengthMenu": [5, 10, 15, 20],
+            "pageLength": 5
+        });
+    } );
+</script>
 
 </body>
 
