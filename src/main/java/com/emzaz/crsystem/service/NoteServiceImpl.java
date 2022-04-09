@@ -1,7 +1,10 @@
 package com.emzaz.crsystem.service;
 
+import com.emzaz.crsystem.model.Course;
 import com.emzaz.crsystem.model.Note;
+import com.emzaz.crsystem.repository.CourseRepository;
 import com.emzaz.crsystem.repository.NoteRepository;
+import org.hibernate.annotations.NotFound;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -15,13 +18,20 @@ import java.util.Optional;
 public class NoteServiceImpl implements NoteService {
     @Autowired
     private NoteRepository noteRepository;
+    @Autowired
+    private CourseRepository courseRepository;
 
     @Override
-    public Note saveFile(MultipartFile file) {
+    public Note saveFile(Long courseId, MultipartFile file) {
+
+        Course course = courseRepository.findById(courseId)
+                .orElseThrow(() -> new IllegalArgumentException("course id not found"));
+
         String noteName = StringUtils.cleanPath(file.getOriginalFilename());
 
         try {
             Note note = new Note(noteName, file.getContentType(), file.getBytes());
+            note.setCourse(course);
             return noteRepository.save(note);
         }
         catch (Exception e) {
@@ -37,7 +47,7 @@ public class NoteServiceImpl implements NoteService {
     }
 
     @Override
-    public List<Note> getFiles() {
-        return noteRepository.findAll();
+    public List<Note> getNotes(Long courseId) {
+        return noteRepository.findByCourseId(courseId);
     }
 }

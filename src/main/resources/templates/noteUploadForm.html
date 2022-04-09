@@ -7,7 +7,7 @@
 
 <div class="container">
     <h3>Upload Multiple Files</h3>
-    <form id="uploadNotes" name="uploadNotes" method="post" th:action="@{/uploadNotes}" enctype="multipart/form-data">
+    <form id="uploadNotes" name="uploadNotes" method="post" th:action="@{'/courses/' + ${courseId} + '/notes/upload'}" enctype="multipart/form-data">
         <input type="file" name="files" multiple required/>
         <button type="submit">Submit</button>
     </form>
@@ -27,7 +27,7 @@
         <tr th:each="note: ${notes}">
             <td th:text="${note.getId()}"/>
             <td th:text="${note.getNoteName()}"/>
-            <td><a th:href="@{'/downloadNote/' +${note.id}}">Download</a></td>
+            <td><a th:href="@{'/courses/' + ${courseId} + '/notes/download/' +${note.getId()}}">Download</a></td>
         </tr>
         </tbody>
     </table>

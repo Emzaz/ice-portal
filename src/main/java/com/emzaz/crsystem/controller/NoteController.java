@@ -15,29 +15,31 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.List;
 
 @Controller
+@RequestMapping(value = "courses/{courseId}/notes")
 public class NoteController {
 
     @Autowired
     private NoteService noteService;
 
-    @GetMapping("/uploadNotes")
-    public String getNotes(Model model) {
-        List<Note> notes = noteService.getFiles();
+    @GetMapping
+    public String getNotes(@PathVariable Long courseId, Model model) {
+        List<Note> notes = noteService.getNotes(courseId);
 
         model.addAttribute("notes", notes);
+        model.addAttribute("courseId", courseId);
         return "noteUploadForm";
     }
 
-    @PostMapping("/uploadNotes")
-    public String uploadNotes(@RequestParam("files")MultipartFile[] files) {
+    @PostMapping("/upload")
+    public String uploadNotes(@PathVariable("courseId") Long courseId, @RequestParam("files")MultipartFile[] files) {
         for (MultipartFile file: files) {
-            noteService.saveFile(file);
+            noteService.saveFile(courseId, file);
         }
 
-        return "redirect:/uploadNotes";
+        return "redirect:/courses/" + courseId + "/notes";
     }
 
-    @GetMapping("/downloadNote/{fileId}")
+    @GetMapping("/download/{fileId}")
     public ResponseEntity<ByteArrayResource> downloadFile(@PathVariable Long fileId) {
         Note note = noteService.getFile(fileId).get();
 

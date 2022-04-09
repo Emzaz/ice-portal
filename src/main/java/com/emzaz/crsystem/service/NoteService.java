@@ -8,7 +8,7 @@ import java.util.Optional;
 
 public interface NoteService {
 
-    Note saveFile(MultipartFile file);
+    Note saveFile(Long courseId, MultipartFile file);
     Optional<Note> getFile(Long fileId);
-    List<Note> getFiles();
+    List<Note> getNotes(Long courseId);
 }

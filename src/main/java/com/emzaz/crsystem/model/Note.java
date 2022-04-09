@@ -19,6 +19,9 @@ public class Note {
     @Column(name="data", columnDefinition="BLOB",  length = 65555)
     private byte[] data;
 
+    @ManyToOne
+    private Course course;
+
     public Note() {
     }
 
@@ -26,6 +29,14 @@ public class Note {
         this.noteName = noteName;
         this.noteType = noteType;
         this.data = data;
+    }
+
+    public Course getCourse() {
+        return course;
+    }
+
+    public void setCourse(Course course) {
+        this.course = course;
     }
 
     public long getId() {

@@ -91,7 +91,7 @@
                                 <h5 class="card-title" th:text="${course.getCourseCode()}"></h5>
                                 <h6 class="card-text mb-2 text-muted" th:text="${course.getCourseTitle()}"></h6>
                                 <div class="card-footer mod">
-                                    <a href="#" class="card-link link-color">Notes</a>
+                                    <a th:href="@{'/courses/' + ${course.getId()} + '/notes'}" class="card-link link-color">Notes</a>
                                     <a href="#" class="card-link link-color">Notices</a>
                                 </div>
                             </div>
