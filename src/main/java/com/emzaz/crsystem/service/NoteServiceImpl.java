@@ -4,8 +4,10 @@ import com.emzaz.crsystem.model.Note;
 import com.emzaz.crsystem.repository.NoteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,7 +18,7 @@ public class NoteServiceImpl implements NoteService {
 
     @Override
     public Note saveFile(MultipartFile file) {
-        String noteName = file.getOriginalFilename();
+        String noteName = StringUtils.cleanPath(file.getOriginalFilename());
 
         try {
             Note note = new Note(noteName, file.getContentType(), file.getBytes());

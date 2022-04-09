@@ -13,14 +13,21 @@ public class Student {
 
     @CsvBindByPosition(position = 2)
     private String studentId;
+
     private String userName;
+
     private String email;
+
     private String password;
+
     @CsvBindByPosition(position = 0)
     private String firstName;
+
     @CsvBindByPosition(position = 1)
     private String lastName;
+
     private String session;
+
     private String bloodGroup;
 
     public Student() {

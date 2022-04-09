@@ -17,7 +17,7 @@ public class HomeController {
     @Autowired
     private CourseService courseService;
 
-    List<String> semesters = Arrays.asList("1-1", "1-2", "2-1", "2-2");
+    List<String> semesters = Arrays.asList("1-1", "1-2", "2-1", "2-2", "3-1", "3-2", "4-1", "4-2");
 
     @GetMapping("/")
     public String home(@RequestParam(value = "semester",  required = false, defaultValue = "1-1") String semester, Model model) {

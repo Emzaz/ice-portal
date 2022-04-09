@@ -44,7 +44,7 @@ public class StudentServiceImpl implements StudentService {
         byte[] buffer = new byte[initialStream.available()];
         initialStream.read(buffer);
 
-        File targetFile = new File("csv/student.csv");
+        File targetFile = new File("csv/Student.csv");
 
         try (OutputStream outStream = new FileOutputStream(targetFile)) {
             outStream.write(buffer);

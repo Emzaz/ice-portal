@@ -1,5 +1,8 @@
 package com.emzaz.crsystem.model;
 
+import org.hibernate.annotations.Type;
+import org.hibernate.type.BlobType;
+
 import javax.persistence.*;
 
 @Entity
@@ -13,6 +16,7 @@ public class Note {
     private String noteType;
 
     @Lob
+    @Column(name="data", columnDefinition="BLOB")
     private byte[] data;
 
     public Note() {

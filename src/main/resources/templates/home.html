@@ -78,20 +78,22 @@
 
         <div class="row">
             <div class="left" >
-                <h4>Registered Courses : <span th:text="${param.semester} ?: '1-1' "></span></h4>
+                <h5>Registered Courses : <span th:text="${param.semester} ?: '1-1' "></span></h5>
             </div>
         </div>
 
         <div class="row">
             <th:block th:each="course : ${listOfCourses}">
                 <div class="col-md-4">
-                    <div class="card" style="margin-bottom: 16px ">
-                        <div class="card-body">
-                            <h5 class="card-title" th:text="${course.getCourseCode()}"></h5>
-                            <h6 class="card-text mb-2 text-muted" th:text="${course.getCourseTitle()}"></h6>
-                            <div class="card-footer mod">
-                                <a href="#" class="card-link link-color">Notes</a>
-                                <a href="#" class="card-link link-color">Notices</a>
+                    <div class="card-deck">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title" th:text="${course.getCourseCode()}"></h5>
+                                <h6 class="card-text mb-2 text-muted" th:text="${course.getCourseTitle()}"></h6>
+                                <div class="card-footer mod">
+                                    <a href="#" class="card-link link-color">Notes</a>
+                                    <a href="#" class="card-link link-color">Notices</a>
+                                </div>
                             </div>
                         </div>
                     </div>
