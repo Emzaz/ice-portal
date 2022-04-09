@@ -1,7 +1,10 @@
 package com.emzaz.crsystem.service;
 
+import com.emzaz.crsystem.model.Course;
+import com.emzaz.crsystem.model.Note;
 import com.emzaz.crsystem.model.Notice;
 import com.emzaz.crsystem.model.Student;
+import com.emzaz.crsystem.repository.CourseRepository;
 import com.emzaz.crsystem.repository.NoticeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,13 +18,16 @@ public class NoticeServiceImpl implements NoticeService{
     @Autowired
     private NoticeRepository noticeRepository;
 
-    @Override
-    public List<Notice> getAllNotices() {
-        return noticeRepository.findAll();
-    }
+    @Autowired
+    private CourseRepository courseRepository;
 
     @Override
-    public void saveNotice(Notice notice) {
+    public void saveNotice(Long courseId, Notice notice) {
+        Course course = courseRepository.findById(courseId)
+                .orElseThrow(() -> new IllegalArgumentException("course id not found"));
+
+        notice.setCourse(course);
+
         this.noticeRepository.save(notice);
     }
 
@@ -42,5 +48,10 @@ public class NoticeServiceImpl implements NoticeService{
     @Override
     public void deleteNoticeById(Long id) {
         this.noticeRepository.deleteById(id);
+    }
+
+    @Override
+    public List<Notice> getNotices(Long courseId) {
+        return noticeRepository.findByCourseId(courseId);
     }
 }

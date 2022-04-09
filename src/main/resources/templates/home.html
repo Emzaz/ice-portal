@@ -12,6 +12,7 @@
                 <img th:src="@{/images/logo.gif}" alt="" width="30" height="40">
                 Department of Information And Communication Engineering
             </a>
+            <a th:href="@{/admin}">Admin</a>
 
             <ul class="nav justify-content-end align-items-center">
                 <li class="nav-item">
@@ -61,34 +62,6 @@
                         <tr>
                             <td>Makeup Class</td>
                             <td>1 January, 2022 2:20PM</td>
-                        </tr>
-                        <tr>
-                            <td>Cancelation Of Monday Class</td>
-                            <td>1 January, 2022 2:00</td>
-                        </tr>
-                        <tr>
-                            <td>Makeup Class</td>
-                            <td>1 January, 2022 2:20PM</td>
-                        </tr>
-                        <tr>
-                            <td>Cancelation Of Monday Class</td>
-                            <td>1 January, 2022 2:00</td>
-                        </tr>
-                        <tr>
-                            <td>Makeup Class</td>
-                            <td>1 January, 2022 2:20PM</td>
-                        </tr>
-                        <tr>
-                            <td>Cancelation Of Monday Class</td>
-                            <td>1 January, 2022 2:00</td>
-                        </tr>
-                        <tr>
-                            <td>Makeup Class</td>
-                            <td>1 January, 2022 2:20PM</td>
-                        </tr>
-                        <tr>
-                            <td>Cancelation Of Monday Class</td>
-                            <td>1 January, 2022 2:00</td>
                         </tr>
                         </tbody>
                     </table>
@@ -140,7 +113,7 @@
                                                 <a th:href="@{'/courses/' + ${course.getId()} + '/notes'}" class="card-link link-color">Notes</a>
                                             </div>
                                             <div class="col">
-                                                <a href="#" class="card-link link-color">Notices</a>
+                                                <a th:href="@{'/courses/' + ${course.getId()} + '/notice'}" class="card-link link-color">Notices</a>
                                             </div>
                                         </div>
                                     </div>

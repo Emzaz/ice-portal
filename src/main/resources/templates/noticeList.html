@@ -9,7 +9,7 @@
 
 
 <div class="container my-2">
-    <a th:href="@{/noticeForm}" class="btn btn-primary btn-sm mb-3">Add Notice</a>
+    <a th:href="@{'/courses/' + ${courseId} + '/notice/noticeForm'}" class="btn btn-primary btn-sm mb-3">Add Notice</a>
     <h1>Notices List</h1>
     <table id="notice_table" border="1" class="table table-striped table-responsive-md">
         <thead>
@@ -21,10 +21,10 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="notice : ${listOfNotices}">
-            <td th:text="${notice.getTitle()}"></td>
-            <td th:text="${notice.getDateTime()}"></td>
-            <td th:text="${notice.getNoticeDetails()}"></td>
+        <tr th:each="notice : ${notices}">
+            <td th:text="${notice.getTitle()}"/>
+            <td th:text="${notice.getDateTime()}"/>
+            <td th:text="${notice.getNoticeDetails()}"/>
             <td>
                 <a th:href="@{/updateNotice/{id}(id=${notice.getId()})}" class="btn btn-primary btn-sm">Update</a>
                 <a th:href="@{/deleteNotice/{id}(id=${notice.getId()})}" class="btn btn-danger btn-sm">Delete</a>
