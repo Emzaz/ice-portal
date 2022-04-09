@@ -14,7 +14,7 @@
     <h2 class="h2">Save Notice</h2>
     <hr class="mb-4">
 
-    <form action="#" th:action="@{/saveNotice}" th:object="${notice}" method="post">
+    <form action="#" th:action="@{'/courses/' + ${courseId} + '/notice/saveNotice'}" th:object="${notice}" method="post">
 
         <div class="form-group">
             <input type="hidden" th:field="*{id}" class="form-control mb-4 col-4">
@@ -25,10 +25,6 @@
             <input type="text" th:field="*{title}" class="form-control mb-4 col-4">
         </div>
 
-        <div class="form-group">
-            <label>Date</label>
-            <input type="text" th:field="*{dateTime}" class="form-control mb-4 col-4">
-        </div>
 
         <div class="form-group">
             <label>Description</label>

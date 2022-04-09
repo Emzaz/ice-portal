@@ -16,6 +16,9 @@ public class Notice {
 
     private String noticeDetails;
 
+    @ManyToOne
+    private Course course;
+
     public Notice() {
     }
 
@@ -29,6 +32,14 @@ public class Notice {
     @PrePersist
     protected void onCreate() {
         dateTime= new Date();
+    }
+
+    public Course getCourse() {
+        return course;
+    }
+
+    public void setCourse(Course course) {
+        this.course = course;
     }
 
     public long getId() {

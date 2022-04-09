@@ -1,41 +1,47 @@
 package com.emzaz.crsystem.controller;
 
+import com.emzaz.crsystem.model.Note;
 import com.emzaz.crsystem.model.Notice;
 import com.emzaz.crsystem.service.NoticeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
+@RequestMapping(value = "courses/{courseId}/notice")
 public class NoticeController {
 
     @Autowired
     private NoticeService noticeService;
 
-    @GetMapping("/notice")
-    public String showNotices(Model model) {
-        model.addAttribute("listOfNotices", noticeService.getAllNotices());
+    @GetMapping
+    public String showNotices(@PathVariable Long courseId, Model model) {
+        List<Notice> notices = noticeService.getNotices(courseId);
+
+        model.addAttribute("notices", notices);
 
         return "noticeList";
     }
 
     @GetMapping("/noticeForm")
-    public String noticeForm(Model model) {
+    public String noticeForm(@PathVariable Long courseId, Model model) {
         Notice notice = new Notice();
+
+        model.addAttribute("courseId", courseId);
+
         model.addAttribute("notice", notice);
 
         return "noticeForm";
     }
 
     @PostMapping("/saveNotice")
-    public String saveNotice(@ModelAttribute("notice") Notice notice) {
-        noticeService.saveNotice(notice);
+    public String saveNotice(@PathVariable("courseId") Long courseId, @ModelAttribute("notice") Notice notice) {
+        noticeService.saveNotice(courseId, notice);
 
-        return "redirect:/notice";
+        return "redirect:/courses/" + courseId + "/notice";
     }
 
     @GetMapping("/updateNotice/{id}")

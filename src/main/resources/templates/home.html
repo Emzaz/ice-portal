@@ -12,6 +12,7 @@
                 <img th:src="@{/images/logo.gif}" alt="" width="30" height="40">
                 Department of Information And Communication Engineering
             </a>
+            <a th:href="@{/admin}">Admin</a>
 
             <ul class="nav justify-content-end align-items-center">
                 <li class="nav-item">
@@ -92,7 +93,7 @@
                                 <h6 class="card-text mb-2 text-muted" th:text="${course.getCourseTitle()}"></h6>
                                 <div class="card-footer mod">
                                     <a th:href="@{'/courses/' + ${course.getId()} + '/notes'}" class="card-link link-color">Notes</a>
-                                    <a href="#" class="card-link link-color">Notices</a>
+                                    <a th:href="@{'/courses/' + ${course.getId()} + '/notice'}" class="card-link link-color">Notices</a>
                                 </div>
                             </div>
                         </div>
