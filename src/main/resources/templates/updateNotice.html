@@ -14,7 +14,7 @@
     <h2 class="h2">Update Notice</h2>
     <hr class="mb-4">
 
-    <form action="#" th:action="@{/saveNotice}" th:object="${notice}" method="post">
+    <form action="#" th:action="@{'/courses/' + ${courseId} + '/notice/saveNotice'}" th:object="${notice}" method="post">
 
         <div class="form-group">
             <input type="hidden" th:field="*{id}" class="form-control mb-4 col-4">

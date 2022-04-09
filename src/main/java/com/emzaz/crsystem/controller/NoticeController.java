@@ -45,10 +45,11 @@ public class NoticeController {
     }
 
     @GetMapping("/updateNotice/{id}")
-    public String updateNotice(@PathVariable(value = "id") Long id, Model model) {
+    public String updateNotice(@PathVariable(value = "id") Long id, @PathVariable Long courseId, Model model) {
         Notice notice = noticeService.getNoticeById(id);
 
         model.addAttribute("notice", notice);
+        model.addAttribute("courseId", courseId);
 
         return "updateNotice";
     }
