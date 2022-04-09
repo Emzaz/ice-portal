@@ -16,7 +16,7 @@ public class Note {
     private String noteType;
 
     @Lob
-    @Column(name="data", columnDefinition="BLOB")
+    @Column(name="data", columnDefinition="BLOB",  length = 65555)
     private byte[] data;
 
     public Note() {
