@@ -3,9 +3,12 @@ package com.emzaz.crsystem.service;
 import com.emzaz.crsystem.model.Student;
 import com.emzaz.crsystem.model.Teacher;
 import com.emzaz.crsystem.repository.TeacherRepository;
+import com.opencsv.bean.CsvToBeanBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.*;
 import java.util.List;
 import java.util.Optional;
 
@@ -42,5 +45,30 @@ public class TeacherServiceImpl implements TeacherService {
     @Override
     public void deleteTeacherById(Long id) {
         this.teacherRepository.deleteById(id);
+    }
+
+    @Override
+    public List<Teacher> saveTeacher(MultipartFile file) throws IOException {
+        File targetFile = saveFileTemporaryLocation(file);
+
+        List<Teacher> teacherList = (List<Teacher>) new CsvToBeanBuilder(new FileReader(targetFile))
+                .withType(Teacher.class)
+                .build()
+                .parse();
+
+        return teacherRepository.saveAll(teacherList);
+    }
+
+    private File saveFileTemporaryLocation(MultipartFile file) throws IOException {
+        InputStream initialStream = file.getInputStream();
+        byte[] buffer = new byte[initialStream.available()];
+        initialStream.read(buffer);
+
+        File targetFile = new File("csv/teacher.csv");
+
+        try (OutputStream outStream = new FileOutputStream(targetFile)) {
+            outStream.write(buffer);
+        }
+        return targetFile;
     }
 }

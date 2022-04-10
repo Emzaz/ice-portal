@@ -10,6 +10,8 @@ import java.util.List;
 
 public interface NoticeService {
 
+    List<Notice> getAllNotices();
+
     void saveNotice(Long courseId, Notice notice);
 
     Notice getNoticeById(Long id);

@@ -1,6 +1,7 @@
 package com.emzaz.crsystem.controller;
 
 import com.emzaz.crsystem.model.Note;
+import com.emzaz.crsystem.model.Notice;
 import com.emzaz.crsystem.service.NoteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
@@ -22,6 +23,15 @@ public class NoteController {
     private NoteService noteService;
 
     @GetMapping
+    public String showNotes(@PathVariable Long courseId, Model model) {
+        List<Note> notes = noteService.getNotes(courseId);
+
+        model.addAttribute("notes", notes);
+
+        return "noteList";
+    }
+
+    @GetMapping("/noteForm")
     public String getNotes(@PathVariable Long courseId, Model model) {
         List<Note> notes = noteService.getNotes(courseId);
 
@@ -47,5 +57,12 @@ public class NoteController {
                 .contentType(MediaType.APPLICATION_OCTET_STREAM)
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment;filename=\"" +note.getNoteName() + "\"")
                 .body(new ByteArrayResource(note.getData()));
+    }
+
+    @GetMapping("/deleteNote/{id}")
+    public String deleteNote(@PathVariable("courseId") Long courseId, @PathVariable(value = "id") Long id) {
+        this.noteService.deleteNoteById(id);
+
+        return "redirect:/courses/" + courseId + "/notes";
     }
 }

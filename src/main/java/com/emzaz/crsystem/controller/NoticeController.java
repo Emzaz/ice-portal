@@ -55,9 +55,9 @@ public class NoticeController {
     }
 
     @GetMapping("/deleteNotice/{id}")
-    public String deleteNotice(@PathVariable(value = "id") Long id) {
+    public String deleteNotice(@PathVariable("courseId") Long courseId, @PathVariable(value = "id") Long id) {
         this.noticeService.deleteNoticeById(id);
 
-        return "redirect:/notice";
+        return "redirect:/courses/" + courseId + "/notice";
     }
 }
