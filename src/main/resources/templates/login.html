@@ -59,6 +59,9 @@
                 <span th:if="${param.error}" class="p-b-32" style="color: red">
                     Invalid username and password.
                 </span>
+                <span th:if="${param.logout}" class="alert alert-success" style="color: darkgreen">
+                    You have been logged out.
+                </span>
                 <div class="container-login100-form-btn">
                     <button class="login100-form-btn" type="submit">
                         Login
