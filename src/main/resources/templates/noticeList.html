@@ -5,7 +5,7 @@
 
 <body>
 
-<!--<div th:replace="fragments/navigation :: navbar"></div>-->
+<div th:replace="fragments/navigation :: navbar"></div>
 
 
 <div class="container my-2">
@@ -27,7 +27,7 @@
             <td th:text="${notice.getNoticeDetails()}"/>
             <td>
                 <a th:href="@{'/courses/' + ${courseId} + '/notice/updateNotice/' + ${notice.getId()}}" class="btn btn-primary btn-sm">Update</a>
-                <a th:href="@{/deleteNotice/{id}(id=${notice.getId()})}" class="btn btn-danger btn-sm">Delete</a>
+                <a th:href="@{'/courses/' + ${courseId} + '/notice/deleteNotice/' + ${notice.getId()}}" class="btn btn-danger btn-sm">Delete</a>
             </td>
         </tr>
         </tbody>

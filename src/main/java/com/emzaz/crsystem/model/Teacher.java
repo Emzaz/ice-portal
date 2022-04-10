@@ -1,5 +1,7 @@
 package com.emzaz.crsystem.model;
 
+import com.opencsv.bean.CsvBindByPosition;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,12 +14,23 @@ public class Teacher {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @CsvBindByPosition(position = 2)
     private String teacherId;
+
     private String userName;
+
+    @CsvBindByPosition(position = 3)
     private String email;
+
     private String password;
+
+    @CsvBindByPosition(position = 0)
     private String firstName;
+
+    @CsvBindByPosition(position = 1)
     private String lastName;
+
+    @CsvBindByPosition(position = 4)
     private String contactNumber;
 
     public Teacher() {

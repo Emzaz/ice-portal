@@ -11,4 +11,5 @@ public interface NoteService {
     Note saveFile(Long courseId, MultipartFile file);
     Optional<Note> getFile(Long fileId);
     List<Note> getNotes(Long courseId);
+    void deleteNoteById(Long id);
 }

@@ -1,36 +1,31 @@
-<!--
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/header :: header"/>
 <body>
 
-<div th:fragment="navbar">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+<div th:fragment="navbar" class="container">
+    <nav class="navbar navbar-light main-nav">
+        <div class="container-fluid">
+            <a class="navbar-brand" th:href="@{/}" href="#">
+                <img th:src="@{/images/logo.gif}" alt="" width="30" height="40">
+                Department of Information And Communication Engineering
+            </a>
+            <a th:href="@{/admin}">Admin</a>
 
-        <div class="container">
-            <a class="navbar-brand" href="/">ICE</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
-                    aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="/">Home</a>
-                    </li>
-
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">About</a>
-                    </li>
-
-                    <li class="nav-item active">
-                        <a class="nav-link" href="/login">Login</a>
-                    </li>
-                </ul>
-            </div>
+            <ul class="nav justify-content-end align-items-center">
+                <li class="nav-item">
+                    Welcome, Emzaz Ahmed
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#"><i class="fas fa-cog"></i></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#"><i class="fas fa-sign-out-alt"></i></a>
+                </li>
+            </ul>
         </div>
     </nav>
 </div>
 
 </body>
-</html>-->
+</html>

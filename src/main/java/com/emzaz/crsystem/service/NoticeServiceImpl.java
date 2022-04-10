@@ -22,6 +22,11 @@ public class NoticeServiceImpl implements NoticeService{
     private CourseRepository courseRepository;
 
     @Override
+    public List<Notice> getAllNotices() {
+        return noticeRepository.findAll();
+    }
+
+    @Override
     public void saveNotice(Long courseId, Notice notice) {
         Course course = courseRepository.findById(courseId)
                 .orElseThrow(() -> new IllegalArgumentException("course id not found"));

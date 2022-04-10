@@ -34,6 +34,11 @@ public class Notice {
         dateTime= new Date();
     }
 
+    @PreUpdate
+    protected void onUpdate() {
+        dateTime= new Date();
+    }
+
     public Course getCourse() {
         return course;
     }

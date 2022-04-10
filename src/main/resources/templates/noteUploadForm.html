@@ -5,32 +5,25 @@
 
 <body>
 
-<div class="container">
-    <h3>Upload Multiple Files</h3>
-    <form id="uploadNotes" name="uploadNotes" method="post" th:action="@{'/courses/' + ${courseId} + '/notes/upload'}" enctype="multipart/form-data">
-        <input type="file" name="files" multiple required/>
-        <button type="submit">Submit</button>
-    </form>
-</div>
+<div th:replace="fragments/navigation :: navbar"></div>
 
-<div class="container table">
-    <h3>List of Documents</h3>
-    <table>
-        <thead>
-        <tr>
-            <th>Id</th>
-            <th>Name</th>
-            <th>Download Link</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="note: ${notes}">
-            <td th:text="${note.getId()}"/>
-            <td th:text="${note.getNoteName()}"/>
-            <td><a th:href="@{'/courses/' + ${courseId} + '/notes/download/' +${note.getId()}}">Download</a></td>
-        </tr>
-        </tbody>
-    </table>
+<div class="container">
+    <br>
+    <h2>Upload File</h2>
+    <hr class="mb-4">
+
+    <form id="uploadNotes" name="uploadNotes" method="post" th:action="@{'/courses/' + ${courseId} + '/notes/upload'}" enctype="multipart/form-data">
+
+        <div class="form-group">
+            <input type="file" name="files" multiple required class="form-control mb-4 col-4"/>
+        </div>
+
+        <div class="form-group">
+            <button class="btn btn-primary btn-lg" type="submit">
+                Submit
+            </button>
+        </div>
+    </form>
 </div>
 
 

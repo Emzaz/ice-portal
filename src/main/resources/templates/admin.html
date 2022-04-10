@@ -5,28 +5,7 @@
 
 <body>
 
-<div class="container">
-    <nav class="navbar navbar-light main-nav">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">
-                <img th:src="@{/images/logo.gif}" alt="" width="30" height="40">
-                Department of Information And Communication Engineering
-            </a>
-
-            <ul class="nav justify-content-end align-items-center">
-                <li class="nav-item">
-                    Welcome, Emzaz Ahmed
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#"><i class="fas fa-cog"></i></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#"><i class="fas fa-sign-out-alt"></i></a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-</div>
+<div th:replace="fragments/navigation :: navbar"></div>
 
 <div class="container admin-dashboard">
     <div class="row row-cols-1 row-cols-md-4 g-4">

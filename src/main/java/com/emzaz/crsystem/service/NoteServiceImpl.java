@@ -51,4 +51,9 @@ public class NoteServiceImpl implements NoteService {
     public List<Note> getNotes(Long courseId) {
         return noteRepository.findByCourseId(courseId);
     }
+
+    @Override
+    public void deleteNoteById(Long id) {
+        this.noteRepository.deleteById(id);
+    }
 }
