@@ -31,6 +31,6 @@ public class DashboardController {
 
         model.addAttribute("listOfNotices", noticeService.getAllNotices());
 
-        return "home";
+        return "dashboard";
     }
 }
