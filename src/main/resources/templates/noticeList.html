@@ -19,7 +19,7 @@
             <th>Title</th>
             <th>Date</th>
             <th>Description</th>
-            <th>Actions</th>
+            <th sec:authorize="hasRole('ROLE_TEACHER')">Actions</th>
         </tr>
         </thead>
         <tbody>
@@ -27,7 +27,7 @@
             <td th:text="${notice.getTitle()}"/>
             <td th:text="${notice.getDateTime()}"/>
             <td th:text="${notice.getNoticeDetails()}"/>
-            <td>
+            <td sec:authorize="hasRole('ROLE_TEACHER')">
                 <a th:href="@{'/courses/' + ${courseId} + '/notice/updateNotice/' + ${notice.getId()}}" class="btn btn-primary btn-sm">Update</a>
                 <a th:href="@{'/courses/' + ${courseId} + '/notice/deleteNotice/' + ${notice.getId()}}" class="btn btn-danger btn-sm">Delete</a>
             </td>

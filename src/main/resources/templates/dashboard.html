@@ -18,12 +18,14 @@
                         <tr>
                             <th scope="col">Title</th>
                             <th scope="col">Date</th>
+                            <th scope="col">Description</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr th:each="notice : ${listOfNotices}">
                             <td th:text="${notice.getTitle()}"/>
                             <td th:text="${notice.getDateTime()}"/>
+                            <td th:text="${notice.getNoticeDetails()}"/>
                         </tr>
                         </tbody>
                     </table>

@@ -18,14 +18,14 @@
         <tr>
             <th>Name</th>
             <th>Download link</th>
-            <th>Actions</th>
+            <th sec:authorize="hasRole('ROLE_TEACHER')">Actions</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="note : ${notes}">
             <td th:text="${note.getNoteName()}"/>
             <td><a th:href="@{'/courses/' + ${courseId} + '/notes/download/' +${note.getId()}}">Download</a></td>
-            <td>
+            <td sec:authorize="hasRole('ROLE_TEACHER')">
                 <a th:href="@{'/courses/' + ${courseId} + '/note/deleteNote/' + ${note.getId()}}" class="btn btn-danger btn-sm">Delete</a>
             </td>
         </tr>
