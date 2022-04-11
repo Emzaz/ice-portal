@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 
 <head th:replace="fragments/header :: header"/>
 
@@ -71,13 +71,16 @@
                                         <h5 class="card-title" th:text="${course.getCourseCode()}"></h5>
                                         <h6 class="card-text mb-2 text-muted" th:text="${course.getCourseTitle()}"></h6>
                                     </div>
-                                    <div class="card-footer">
-                                        <div class="row align-items-start">
+                                    <div class="card-footer" style="font-size: 8px">
+                                        <div class="row row-cols-1 row-cols-md-4 g-4 align-items-start">
                                             <div class="col">
                                                 <a th:href="@{'/courses/' + ${course.getId()} + '/notes'}" class="card-link link-color">Notes</a>
                                             </div>
                                             <div class="col">
                                                 <a th:href="@{'/courses/' + ${course.getId()} + '/notice'}" class="card-link link-color">Notices</a>
+                                            </div>
+                                            <div class="col" sec:authorize="hasRole('ROLE_TEACHER')">
+                                                <a th:href="@{'/courses/' + ${course.getId()} + '/attendance'}" class="card-link link-color">Attendance</a>
                                             </div>
                                         </div>
                                     </div>
