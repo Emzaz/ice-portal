@@ -10,30 +10,37 @@
 
 <div class="container my-2">
     <h1>Attendance List</h1>
-    <table id="attendance_table" border="1" class="table table-striped table-responsive-md">
-        <thead>
-        <tr>
-            <th>Name</th>
-            <th>Student Id</th>
-            <th>Present</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="attendance : ${attendanceList}">
-            <td th:text="${attendance.getStudent().getFirstName()}"></td>
-            <td th:text="${attendance.getStudent().getStudentId()}"></td>
+    <form th:action="@{'/courses/' + ${courseId} + '/attendance'}" th:object="${attendanceForm}" method="POST">
+        <table id="attendance_table" border="1" class="table table-striped table-responsive-md">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Student Id</th>
+                <th>Present</th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr th:each="attendance, itemStat : *{attendances}">
+                    <td th:text="${attendance.getStudent().getFirstName()}"></td>
+                    <td th:text="${attendance.getStudent().getStudentId()}"></td>
 
-            <td>
-                <div class="form-check" th:object="">
-                    <input  class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                    <label class="form-check-label" for="flexCheckDefault">
-                        Present
-                    </label>
-                </div>
-            </td>
-        </tr>
-        </tbody>
-    </table>
+                    <td>
+                        <div class="form-check">
+                            <input  th:field="*{attendances[__${itemStat.index}__].present}"
+                                    th:id="'attend-' + ${itemStat.index}"
+                                    class="form-check-input"
+                                    type="checkbox">
+                            <input  th:field="*{attendances[__${itemStat.index}__].student}" hidden>
+                            <input  th:field="*{attendances[__${itemStat.index}__].course}" hidden>
+                            <label class="form-check-label" th:for="'attend-' + ${itemStat.index}">Present</label>
+                        </div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <button type="submit" class="btn btn-primary">Save Attendance</button>
+    </form>
 </div>
 
 
@@ -41,10 +48,5 @@
 <div th:replace="fragments/footer :: footer"/>
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
-<script>
-    $(document).ready(function() {
-        $('#attendance_table').DataTable();
-    });
-</script>
 </body>
 </html>

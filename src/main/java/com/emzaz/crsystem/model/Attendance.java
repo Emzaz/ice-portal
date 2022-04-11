@@ -16,6 +16,7 @@ public class Attendance {
     private Course course;
 
     @ManyToOne
+    @JoinColumn(name = "student_fk")
     private Student student;
 
     @Temporal(value = TemporalType.DATE)
@@ -29,11 +30,10 @@ public class Attendance {
     public Attendance() {
     }
 
-    public Attendance(boolean present, Course course, Student student, Date date) {
+    public Attendance(boolean present, Course course, Student student) {
         this.present = present;
         this.course = course;
         this.student = student;
-        this.date = date;
     }
 
     public Long getId() {
@@ -74,5 +74,16 @@ public class Attendance {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    @Override
+    public String toString() {
+        return "Attendance{" +
+                "id=" + id +
+                ", present=" + present +
+                ", course=" + course +
+                ", student=" + student +
+                ", date=" + date +
+                '}';
     }
 }

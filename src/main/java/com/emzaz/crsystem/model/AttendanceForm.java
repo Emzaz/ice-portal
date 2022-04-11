@@ -1,16 +1,17 @@
 package com.emzaz.crsystem.model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class AttendanceForm {
 
-    private ArrayList<Attendance> attendances;
+    private List<Attendance> attendances;
 
-    public ArrayList<Attendance> getAttendances() {
+    public List<Attendance> getAttendances() {
         return attendances;
     }
 
-    public void setAttendances(ArrayList<Attendance> attendances) {
+    public void setAttendances(List<Attendance> attendances) {
         this.attendances = attendances;
     }
 }
