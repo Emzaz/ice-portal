@@ -16,7 +16,7 @@ public class AttendanceServiceImpl implements AttendanceService{
 
     @Override
     public List<Attendance> getAllAttendances() {
-        return null;
+        return attendanceRepository.findAll();
     }
 
     @Override

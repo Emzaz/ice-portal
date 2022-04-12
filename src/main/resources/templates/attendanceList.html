@@ -9,7 +9,7 @@
 
 
 <div class="container my-2">
-    <h1>Attendance List</h1>
+    <h1>Attendance Form</h1>
     <form th:action="@{'/courses/' + ${courseId} + '/attendance'}" th:object="${attendanceForm}" method="POST">
         <table id="attendance_table" border="1" class="table table-striped table-responsive-md">
             <thead>

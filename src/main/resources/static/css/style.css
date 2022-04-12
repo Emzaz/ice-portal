@@ -67,7 +67,7 @@ table.dataTable thead th, table.dataTable thead td {
     color: #fff;
 }
 .card .card-footer {
-    padding: 3px;
+
     background-color: #4c93cd;
 }
 .card .card-footer a {
@@ -138,8 +138,8 @@ tbody, td, tfoot, th, thead, tr {
 
 .link-color{
     color: black;
-    padding-left: 40px;
-    margin-top: 4px;
+
+
     display: inline-block;
     /* border: 2px solid red; */
 }

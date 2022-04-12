@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head th:replace="fragments/header :: header" />
+
+<body>
+
+<div th:replace="fragments/navigation :: navbar"></div>
+
+
+<div class="container my-2">
+    <h1>Attendance List</h1>
+    <table id="attendance_table" border="1" class="table table-striped table-responsive-md">
+        <thead>
+        <tr>
+            <th>Course Code</th>
+            <th>Student Id</th>
+            <th>Date</th>
+            <th>Present</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="attendance : ${attendanceData}">
+            <td th:text="${attendance.getCourse().getCourseCode()}"/>
+            <td th:text="${attendance.getStudent().getStudentId()}"/>
+            <td th:text="${attendance.getDate()}"/>
+            <td th:text="${attendance.getPresent()}"/>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+
+
+<div th:replace="fragments/footer :: footer"/>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#attendance_table').DataTable();
+    });
+</script>
+</body>
+</html>

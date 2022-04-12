@@ -57,6 +57,15 @@ public class AttendanceController {
 
         attendanceService.saveAll(attendances);
 
-        return "redirect:/dashboard";
+        return "redirect:/courses/" + courseId + "/attendance/data";
+    }
+
+    @GetMapping("/data")
+    public String viewAttendanceData(@PathVariable("courseId") Long courseId, Model model) {
+
+        model.addAttribute("attendanceData", attendanceService.getAllAttendances());
+        model.addAttribute("courseId", courseId);
+
+        return "attendanceData";
     }
 }
