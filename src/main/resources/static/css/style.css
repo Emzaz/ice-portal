@@ -93,6 +93,20 @@ table.dataTable thead th, table.dataTable thead td {
     border-radius: 0.25rem;
 }
 
+.select-batch {
+    display: block;
+    width: 100%;
+    padding: 0.15rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    color: #212529;
+    background-color: #fff;
+    border: 1px solid #ced4da;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: 0.25rem;
+}
+
 .fa-cog {
     color: black;
 }

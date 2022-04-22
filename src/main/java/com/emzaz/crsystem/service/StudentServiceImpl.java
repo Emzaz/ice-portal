@@ -44,7 +44,7 @@ public class StudentServiceImpl implements StudentService {
         byte[] buffer = new byte[initialStream.available()];
         initialStream.read(buffer);
 
-        File targetFile = new File("csv/Student.csv");
+        File targetFile = new File("csv/student.csv");
 
         try (OutputStream outStream = new FileOutputStream(targetFile)) {
             outStream.write(buffer);
@@ -69,5 +69,10 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public void deleteStudentById(Long id) {
         this.studentRepository.deleteById(id);
+    }
+
+    @Override
+    public List<Student> getAllStudentsByBatch(String batch) {
+        return studentRepository.findAllByBatch(batch);
     }
 }

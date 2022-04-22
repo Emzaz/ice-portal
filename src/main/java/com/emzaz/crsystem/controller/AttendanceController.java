@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -31,9 +32,16 @@ public class AttendanceController {
     @Autowired
     private CourseService courseService;
 
+    List<String> batches = Arrays.asList("5th", "6th", "7th", "8th", "9th");
+
     @GetMapping
-    public String showAttendance(@PathVariable("courseId") Long courseId, Model model) {
-        List<Student> studentList = studentService.getAllStudents();
+    public String showAttendance(@RequestParam(value = "batch",  required = false, defaultValue = "5th")
+                                             String batch, @PathVariable("courseId") Long courseId, Model model) {
+
+
+        model.addAttribute("batches", batches);
+
+        List<Student> studentList = studentService.getAllStudentsByBatch(batch);
         Course course = courseService.getCourseById(courseId);
 
         List<Attendance> attendanceList = studentList.stream()
@@ -46,6 +54,7 @@ public class AttendanceController {
         attendanceForm.setAttendances(attendanceList);
 
         model.addAttribute("attendanceForm", attendanceForm);
+
 
         return "attendanceList";
     }

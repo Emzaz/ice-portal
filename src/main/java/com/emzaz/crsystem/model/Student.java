@@ -26,14 +26,18 @@ public class Student {
     @CsvBindByPosition(position = 1)
     private String lastName;
 
+    @CsvBindByPosition(position = 3)
     private String session;
+
+    @CsvBindByPosition(position = 4)
+    private String batch;
 
     private String bloodGroup;
 
     public Student() {
     }
 
-    public Student(Long id, String studentId, String userName, String email, String password, String firstName, String lastName, String session, String bloodGroup) {
+    public Student(Long id, String studentId, String userName, String email, String password, String firstName, String lastName, String session, String batch, String bloodGroup) {
         this.id = id;
         this.studentId = studentId;
         this.userName = userName;
@@ -42,6 +46,7 @@ public class Student {
         this.firstName = firstName;
         this.lastName = lastName;
         this.session = session;
+        this.batch = batch;
         this.bloodGroup = bloodGroup;
     }
 
@@ -107,6 +112,14 @@ public class Student {
 
     public void setSession(String session) {
         this.session = session;
+    }
+
+    public String getBatch() {
+        return batch;
+    }
+
+    public void setBatch(String batch) {
+        this.batch = batch;
     }
 
     public String getBloodGroup() {

@@ -14,4 +14,6 @@ public interface StudentService {
     List<Student> saveStudent(MultipartFile file) throws IOException;
     Student getStudentById(Long id);
     void deleteStudentById(Long id);
+
+    List<Student> getAllStudentsByBatch(String batch);
 }

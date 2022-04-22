@@ -71,7 +71,7 @@
                                         <h5 class="card-title" th:text="${course.getCourseCode()}"></h5>
                                         <h6 class="card-text mb-2 text-muted" th:text="${course.getCourseTitle()}"></h6>
                                     </div>
-                                    <div class="card-footer" style="font-size: 15px">
+                                    <div class="card-footer" style="font-size: 12px">
                                         <div class="row row-cols-1 row-cols-md-3 g-3 align-items-start">
                                             <div class="col" style="text-align: center">
                                                 <a th:href="@{'/courses/' + ${course.getId()} + '/notes'}" class="card-link link-color">Notes</a>
