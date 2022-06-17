@@ -7,6 +7,7 @@ import com.emzaz.crsystem.model.Student;
 import com.emzaz.crsystem.service.AttendanceService;
 import com.emzaz.crsystem.service.CourseService;
 import com.emzaz.crsystem.service.StudentService;
+import com.opencsv.CSVWriter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,7 +17,6 @@ import org.springframework.web.bind.annotation.*;
 import org.supercsv.io.CsvBeanWriter;
 import org.supercsv.io.ICsvBeanWriter;
 import org.supercsv.prefs.CsvPreference;
-import sun.java2d.pipe.SpanShapeRenderer;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -86,6 +86,9 @@ public class AttendanceController {
 
 
         model.addAttribute("batches", batches);
+        model.addAttribute("courseId", courseId);
+        model.addAttribute("batch", batch);
+        model.addAttribute("date", date);
 
         Date dateObject;
 
@@ -104,7 +107,7 @@ public class AttendanceController {
     @GetMapping("/data/download")
     public void downloadAttendanceData(HttpServletResponse response, @RequestParam(value = "batch", required = false) String batch,
                                        @RequestParam(value = "date", required = false) String date,
-                                       @PathVariable("courseId") Long courseId, Model model) throws ParseException, IOException {
+                                       @PathVariable("courseId") Long courseId) throws ParseException, IOException {
 
         Date dateObject;
         if (!StringUtils.hasText(date)) {
@@ -114,7 +117,6 @@ public class AttendanceController {
         }
 
         List<Attendance> attendances = attendanceService.getAllAttendances(courseId, batch, dateObject);
-        model.addAttribute("attendanceData", attendances);
 
         response.setContentType("text/csv");
         DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss");
@@ -125,14 +127,21 @@ public class AttendanceController {
         response.setHeader(headerKey, headerValue);
 
 
-        ICsvBeanWriter csvWriter = new CsvBeanWriter(response.getWriter(), CsvPreference.STANDARD_PREFERENCE);
+        CSVWriter csvWriter = new CSVWriter(response.getWriter());
         String[] csvHeader = {"Course Code", "Student Id", "Batch", "Date", "Present"};
-        String[] nameMapping = {"Course Code", "Student Id", "Batch", "Date", "Present"};
 
-        csvWriter.writeHeader(csvHeader);
+        csvWriter.writeNext(csvHeader);
 
         for (Attendance attendance: attendances) {
-            csvWriter.write(attendance, nameMapping);
+            String courseCode = attendance.getCourse().getCourseCode();
+            String studentId = attendance.getStudent().getStudentId();
+            String batch1 = attendance.getStudent().getBatch();
+            Date date1 = attendance.getDate();
+            boolean present = attendance.getPresent();
+
+            log.info("Course code {}, student id {}, batch {}, date {}, present {}", courseCode, studentId, batch1,date1, present);
+
+            csvWriter.writeNext(new String[]{courseCode, studentId, batch1, date1.toString(), Boolean.toString(present)});
         }
 
         csvWriter.close();

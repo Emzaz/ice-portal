@@ -46,6 +46,10 @@
                 <div style="margin: 15px 0 15px 0">
                     <h5>Selected Batch: <span style="color: #4c93cd;" th:text="${param.batch}"></span></h5>
                 </div>
+                <div th:if="${date} and ${batch}">
+                    <a th:href="@{'/courses/' + ${courseId} + '/attendance/data/download' + '?batch=' + ${batch} + '&date='+ ${date}}"
+                        class="btn btn-primary">Download Attendance CSV</a>
+                </div>
             </div>
 
 
@@ -69,8 +73,10 @@
                 </tr>
                 </tbody>
             </table>
-            <button type="submit" class="btn btn-primary"><a th:href="@{'/courses/' + ${courseId} +
-            '/attendance/data/' + ${batch} +'/download'}"></a>Download Attendance</button>
+            <div th:if="${date} and ${batch}">
+                <a th:href="@{'/courses/' + ${courseId} + '/attendance/data/download' + '?batch=' + ${batch} + '&date='+ ${date}}"
+                   class="btn btn-primary">Download Attendance CSV</a>
+            </div>
         </div>
     </div>
 
