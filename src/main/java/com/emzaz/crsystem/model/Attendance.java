@@ -1,5 +1,7 @@
 package com.emzaz.crsystem.model;
 
+import org.hibernate.engine.jdbc.batch.spi.Batch;
+
 import javax.persistence.*;
 import java.util.Date;
 

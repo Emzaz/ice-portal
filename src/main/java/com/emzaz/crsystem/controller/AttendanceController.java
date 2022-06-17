@@ -11,10 +11,20 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
+import org.supercsv.io.CsvBeanWriter;
+import org.supercsv.io.ICsvBeanWriter;
+import org.supercsv.prefs.CsvPreference;
+import sun.java2d.pipe.SpanShapeRenderer;
 
-import java.util.ArrayList;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -35,8 +45,8 @@ public class AttendanceController {
     List<String> batches = Arrays.asList("5th", "6th", "7th", "8th", "9th");
 
     @GetMapping
-    public String showAttendance(@RequestParam(value = "batch",  required = false, defaultValue = "5th")
-                                             String batch, @PathVariable("courseId") Long courseId, Model model) {
+    public String showAttendance(@RequestParam(value = "batch", required = false, defaultValue = "5th")
+                                         String batch, @PathVariable("courseId") Long courseId, Model model) {
 
 
         model.addAttribute("batches", batches);
@@ -70,11 +80,62 @@ public class AttendanceController {
     }
 
     @GetMapping("/data")
-    public String viewAttendanceData(@PathVariable("courseId") Long courseId, Model model) {
+    public String viewAttendanceData(@RequestParam(value = "batch", required = false) String batch,
+                                     @RequestParam(value = "date", required = false) String date,
+                                     @PathVariable("courseId") Long courseId, Model model) throws ParseException {
 
-        model.addAttribute("attendanceData", attendanceService.getAllAttendances());
-        model.addAttribute("courseId", courseId);
+
+        model.addAttribute("batches", batches);
+
+        Date dateObject;
+
+        if (!StringUtils.hasText(date)) {
+            dateObject = new Date();
+        } else {
+            dateObject = new SimpleDateFormat("yyyy-MM-dd").parse(date);
+        }
+
+        List<Attendance> attendances = attendanceService.getAllAttendances(courseId, batch, dateObject);
+        model.addAttribute("attendanceData", attendances);
 
         return "attendanceData";
+    }
+
+    @GetMapping("/data/download")
+    public void downloadAttendanceData(HttpServletResponse response, @RequestParam(value = "batch", required = false) String batch,
+                                       @RequestParam(value = "date", required = false) String date,
+                                       @PathVariable("courseId") Long courseId, Model model) throws ParseException, IOException {
+
+        Date dateObject;
+        if (!StringUtils.hasText(date)) {
+            dateObject = new Date();
+        } else {
+            dateObject = new SimpleDateFormat("yyyy-MM-dd").parse(date);
+        }
+
+        List<Attendance> attendances = attendanceService.getAllAttendances(courseId, batch, dateObject);
+        model.addAttribute("attendanceData", attendances);
+
+        response.setContentType("text/csv");
+        DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss");
+        String currentDateTime = dateFormatter.format(new Date());
+
+        String headerKey = "Content-Disposition";
+        String headerValue = "attachment; filename=attendance_" + currentDateTime + ".csv";
+        response.setHeader(headerKey, headerValue);
+
+
+        ICsvBeanWriter csvWriter = new CsvBeanWriter(response.getWriter(), CsvPreference.STANDARD_PREFERENCE);
+        String[] csvHeader = {"Course Code", "Student Id", "Batch", "Date", "Present"};
+        String[] nameMapping = {"Course Code", "Student Id", "Batch", "Date", "Present"};
+
+        csvWriter.writeHeader(csvHeader);
+
+        for (Attendance attendance: attendances) {
+            csvWriter.write(attendance, nameMapping);
+        }
+
+        csvWriter.close();
+
     }
 }
